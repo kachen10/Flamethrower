@@ -12,7 +12,7 @@ int main( int argc, char* arg[] ) {
 	refresh();
 	//FUNCTIONS THAT WILL GO HERE
 	c_visual();
-  
+
 
 	endwin(); //bye
 	return 0;
