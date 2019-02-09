@@ -1,8 +1,21 @@
 #include <ncurses.h>
 #include <unistd.h>
 
+int height = 10;
+int width = 20;
+int size = height * width;
+int start_y = 0; int start_x = 0;
+int max_x, max_y;
+
+
 //**************FUNCTION TO DRAW BOB*******************//
-void bob_stage1(int height, int width, int size, WINDOW * win) {
+int c_visual() {
+
+	noecho();
+	WINDOW * c_screen = newwin(height, width, start_y, start_x);
+	refresh();
+	
+	wrefresh(c_screen);
 
 	//width = columns, height = rows
 	int pos; //current position in the image
@@ -38,7 +51,6 @@ void bob_stage1(int height, int width, int size, WINDOW * win) {
 	
 	}
 	
-	int flag = 1;
 	bob[eye1] = '0';
 	bob[eye2] = '0';
 	bob[mouth] = '.';
@@ -52,42 +64,13 @@ void bob_stage1(int height, int width, int size, WINDOW * win) {
 			mvaddch(y, x, bob[pos]);
 		}
 	} 
- 		
-}
-
-
-///*******FUNCTION TO DRAW EVERYTHING + THE BOX*****///
-int c_visual () {
-
-	/*****VARIABLES*******/
-	//box dimensions
-	int height, width, start_y, start_x, size;
-	height = 10;
-	width = 20;
-	size = height * width;
-	start_y = start_x = 0;
-	
-	//box border
-	int left, right, top, bottom, tlc, trc, blc, brc; 
-	left = right = (int)'|';
-	top = bottom = (int)'-';
-	trc = tlc = blc = brc = (int)'+';
-	
-	/*****THE ACTION SPACE*******/
-	noecho();
-	WINDOW * c_screen = newwin(height, width, start_y, start_x);
-	refresh();
 	
 	wrefresh(c_screen);
 	
-	//draw bob (stage 1)
-	bob_stage1(height, width, size, c_screen);
-	wborder(c_screen, left, right, top, bottom, tlc, trc, blc, brc);
-	
 	getch();
 	getch();
-	
-	return 0;
-
+ 		
+ 		return 0;
 }
+
 
