@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <string>
 #include "menu.h"
+#include "creature.h"
 using namespace std;
 
 int N = 3;
@@ -9,6 +10,7 @@ string choices[3] = { "feed", "play", "study" };
 int menu() {
   WINDOW * menu;
 
+  Creature* bob = new Creature();
 
   // Calculate placement of new window
   int y, x, height, width;
@@ -19,7 +21,8 @@ int menu() {
   refresh();
 
   // Create window for input
-  menu = newwin( height, x-12 , y-8, width);
+  //menu = newwin( height, width, y-8, x-12);
+  menu = newwin( height, x-12, y-8, width );
   box( menu, 0, 0 );
   refresh();
   wrefresh( menu );
@@ -45,11 +48,17 @@ int menu() {
             else { highlight++; break; }
           case KEY_F(1):
             if ( user_input == KEY_F(1) ) { break; }
+          case 10:
+            if ( highlight == 0 ) { bob->feed(menu); break; }
+            if ( highlight == 1 ) { bob->play(menu); break; }
+            if ( highlight == 2 ) { bob->study(menu); break; }
           default:
             break;
     } //print_selections( menu, highlight );
   }
   endwin();
+
+  delete bob;
   return 0;
 }
 /*
