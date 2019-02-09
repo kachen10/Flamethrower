@@ -38,11 +38,11 @@ int menu() {
       // refresh();
       switch( user_input ) {
           case KEY_UP:
-            if ( highlight == 0 ) { highlight = N-1; }
-            else { highlight--; }
+            if ( highlight == 0 ) { highlight = N-1; break; }
+            else { highlight--; break; }
           case KEY_DOWN:
-            if ( highlight == N-1 ) { highlight = 0; }
-            else { highlight++; }
+            if ( highlight == N-1 ) { highlight = 0; break; }
+            else { highlight++; break; }
           case KEY_F(1):
             if ( user_input == KEY_F(1) ) { break; }
           default:
