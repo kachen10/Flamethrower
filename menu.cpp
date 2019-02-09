@@ -32,28 +32,21 @@ int menu() {
   int user_input;
   while ( 1 ) {
     int highlight = 0;
-    for ( int i = 0; i < N; i++ ) {
-      if ( i == highlight ) {
-        wattron( menu, A_REVERSE );
-      }
-      mvwprintw( menu, i+1, 1, choices[i].c_str() );
-      wattroff( menu, A_REVERSE );
-      wrefresh(menu);
-  }
+    print_selections( menu, highlight );
     user_input = getch();
-      mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choice");
-      //refresh();
-    /*  switch( user_input ) {
+      //mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choice");
+      // refresh();
+      switch( user_input ) {
           case KEY_UP:
-            if ( highlight == 1 ) { highlight = N; }
+            if ( highlight == 0 ) { highlight = N-1; }
           case KEY_DOWN:
-            if ( highlight == N ) { highlight = 1; }
+            if ( highlight == N-1 ) { highlight = 0; }
             else { highlight ++; }
           case KEY_F(1):
             if ( user_input == KEY_F(1) ) { break; }
           default:
             break;
-    }*/
+    } print_selections( menu, highlight );
   }
   endwin();
   return 0;
@@ -80,12 +73,12 @@ void close_window( WINDOW * menu_win ) {
 
 
 void print_selections(WINDOW * menu, int highlight ) {
-  int x,y;
     for ( int i = 0; i < N; i++ ) {
       if ( i == highlight ) {
         wattron( menu, A_REVERSE );
       }
-      //mvwprintw( menu, i+1, 1, choices[i].c_str() );
+      mvwprintw( menu, i+1, 1, choices[i].c_str() );
       wattroff( menu, A_REVERSE );
+      wrefresh(menu);
   }
 }
