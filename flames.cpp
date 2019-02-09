@@ -7,9 +7,9 @@ int main(int argc, char** argv) {
 
 	initscr();
 	start_color();
-	
+
 	flames();
-	
+
 	endwin();
 	return 0;
 
@@ -19,7 +19,7 @@ void flames (void) {
 
 	int width, height, size, *b, i;
 	const char characters[] = {' ', '.', ':', '^', '*', 'x', 's', 'S', '#', '$'};
-	
+
 	//get max for screen
 	getmaxyx(stdscr, height, width);
 	size = width*height;
@@ -29,17 +29,17 @@ void flames (void) {
 	init_pair(3,3,0);
 	init_pair(4,4,0);
 	clear();
-	
+
 	//no idea what this does
 	b=calloc((size+width+1), sizeof(int));
 	nodelay(stdscr, TRUE);
 	srand(time(NULL));
-	
+
 	for(;;) {
 		//WHAT???
-		for(i=0; i<width/9; i++) 
+		for(i=0; i<width/9; i++)
 			b[(int)(((float)rand()/(float)RAND_MAX)*width+width*(height-1))]=65;
-	
+
 		for (i=0; i < size; i++)
 			{
 			b[i]=(b[i]+b[i+1]+b[i+width]+b[i+width+1])/4;
@@ -65,7 +65,7 @@ void flames (void) {
 		if (getch() != ERR)
 			break;
 		}
-	
+
 	free(b);
 	return;
 }
