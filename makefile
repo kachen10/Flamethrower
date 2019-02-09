@@ -1,6 +1,6 @@
 CC=g++
-LDFLAGES = -lncurses
+LDFLAGS = -lncurses
 
 
 make:
-	$(CC) $(LDFLAGES) -o flamethrower main.cpp
+	$(CC) -o flamethrower main.cpp c_visual.cpp $(LDFLAGS) 
