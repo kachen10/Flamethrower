@@ -4,10 +4,11 @@
 using namespace std;
 
 int N = 3;
+string choices[3] = { "feed", "play", "study" };
 
 int menu() {
   WINDOW * menu;
-  string choices[3] = { "feed", "play", "study" };
+
 
   // Calculate placement of new window
   int y, x, height, width;
@@ -18,35 +19,45 @@ int menu() {
   refresh();
 
   // Create window for input
-  menu = new_window( height, x-12 , y-8, width);
+  menu = newwin( height, x-12 , y-8, width);
+  box( menu, 0, 0 );
+  refresh();
+  wrefresh( menu );
+  keypad( menu, true );
+  //print_selections( menu, 0 );
+
+  //printw( menu, 0+1, 1, choices[0].c_str() );
   //
   int user_input;
-  while ( (user_input = getch()) != KEY_F(1) ) {
-      int hightlight = 1;
-      mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choices");
-      refresh();
-      switch( user_input ) {
-          case KEY_UP:
-            if ( hightlight == 1 ) { hightlight = N; };
-          case KEY_DOWN:
-            if ( hightlight == N ) { hightlight = 1; }
-            else { hightlight ++; };
-          default:
-            hightlight = 1;
-    }
+  while ( 1 ) {
+    int highlight = 0;
     for ( int i = 0; i < N; i++ ) {
-      if ( i == hightlight ) {
+      if ( i == highlight ) {
         wattron( menu, A_REVERSE );
-        mvwprintw( menu, i+1, 1, choices[i].c_str() );
-        wattroff( menu, A_REVERSE );
       }
+      mvwprintw( menu, i+1, 1, choices[i].c_str() );
+      wattroff( menu, A_REVERSE );
+      mvprintw(0, 0, "helllooo" );
   }
-
+    user_input = getch();
+      mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choice");
+      //refresh();
+    /*  switch( user_input ) {
+          case KEY_UP:
+            if ( highlight == 1 ) { highlight = N; }
+          case KEY_DOWN:
+            if ( highlight == N ) { highlight = 1; }
+            else { highlight ++; }
+          case KEY_F(1):
+            if ( user_input == KEY_F(1) ) { break; }
+          default:
+            break;
+    }*/
   }
   endwin();
   return 0;
 }
-
+/*
 WINDOW * new_window( int height, int width, int starty, int startx ) {
 
   WINDOW * menuwin = newwin( height, width, starty, startx );
@@ -54,11 +65,12 @@ WINDOW * new_window( int height, int width, int starty, int startx ) {
 
   wrefresh( menuwin );
   keypad( menuwin, true );
+  print_selections( menuwin, 0 );
 
   return menuwin;
 
 }
-/*
+*/
 void close_window( WINDOW * menu_win ) {
   wrefresh( menu_win );
   delwin( menu_win );
@@ -66,13 +78,13 @@ void close_window( WINDOW * menu_win ) {
 }
 
 
-void print_selections(WINDOW * menu, int hightlight ) {
+void print_selections(WINDOW * menu, int highlight ) {
+  int x,y;
     for ( int i = 0; i < N; i++ ) {
-      if ( i == hightlight ) {
+      if ( i == highlight ) {
         wattron( menu, A_REVERSE );
-        mvwprintw( menu, i+1, 1, choices[i].c_str() );
-        wattroff( menu, A_REVERSE );
       }
+      mvwprintw( menu, i+1, 1, choices[i].c_str() );
+      wattroff( menu, A_REVERSE );
   }
 }
-*/
