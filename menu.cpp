@@ -28,6 +28,7 @@ int menu() {
 
   //printw( menu, 0+1, 1, choices[0].c_str() );
   //
+
   int user_input;
   while ( 1 ) {
     int highlight = 0;
@@ -37,7 +38,7 @@ int menu() {
       }
       mvwprintw( menu, i+1, 1, choices[i].c_str() );
       wattroff( menu, A_REVERSE );
-      mvprintw(0, 0, "helllooo" );
+      wrefresh(menu);
   }
     user_input = getch();
       mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choice");
@@ -84,7 +85,7 @@ void print_selections(WINDOW * menu, int highlight ) {
       if ( i == highlight ) {
         wattron( menu, A_REVERSE );
       }
-      mvwprintw( menu, i+1, 1, choices[i].c_str() );
+      //mvwprintw( menu, i+1, 1, choices[i].c_str() );
       wattroff( menu, A_REVERSE );
   }
 }
