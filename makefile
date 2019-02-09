@@ -11,6 +11,6 @@ menu:
 
 bob:
 	$(CC) -o bob runMenu.cpp menu.cpp c_visual.cpp creature.cpp $(LDFLAGS)
-
+  
 clean:
-	rm -f visual menuwin
+	rm -f visual menuwin bob

@@ -1,37 +1,75 @@
 #include <ncurses.h>
+#include <unistd.h>
 
-int c_visual () {
+int height = 10;
+int width = 20;
+int size = height * width;
+int start_y = 0; int start_x = 0;
+int max_x, max_y;
 
-	/*****VARIABLES*******/
-	//box dimensions
-	int height, width, start_y, start_x;
-	height = 10;
-	width = 20;
-	start_y = start_x = 0;
-	
-	//box border
-	int left, right, top, bottom, tlc, trc, blc, brc; 
-	left = right = (int)'|';
-	top = bottom = (int)'-';
-	trc = tlc = blc = brc = (int)'&';
-	
-	/*****THE ACTION SPACE*******/
+
+//**************FUNCTION TO DRAW BOB*******************//
+int c_visual() {
+
+	noecho();
 	WINDOW * c_screen = newwin(height, width, start_y, start_x);
 	refresh();
 	
-	//box(c_screen, (int)side_border, (int)top_border);
+	wrefresh(c_screen);
+
+	//width = columns, height = rows
+	int pos; //current position in the image
+	int eye1 = 5*width+8;
+	int eye2 = 5*width+10;
+	int mouth = 5*width + 9;
 	
-	//TO BE IN CONTROL OF HOW YOUR BOX BORDER LOOKS:
-	//wborder(win, left, right, top, bottom, tlc, trc, blc, brc);
-	wborder(c_screen, left, right, top, bottom, tlc, trc, blc, brc);
-	mvwprintw(c_screen, 1, 1, "this is my box");
+	char bob[size] = {};
+	
+	
+	//PREPARE BOB
+	for (int i=0; i <size; i++) {
+		bob[i] = ' ';
+	}
+	
+	for (int x=0; x < width; x++) {
+	
+		for(int y=0; y < height; y ++) {
+			pos = y*width + x;
+			
+			if(y == 3 || y == 6) {
+				if (x >= 6 && x <= 12) {
+			 		bob[pos] = '=';
+			 	} 
+			} 	
+			else if(y == 4 | y == 5) {
+				if ( x == 5 | x == 13) {
+					bob[pos] = '|';
+				}
+			} 
+			
+		}
+	
+	}
+	
+	bob[eye1] = '0';
+	bob[eye2] = '0';
+	bob[mouth] = '.';
+ 		
+ 		
+ 	//PRINT BOB
+	for(int x=0; x < width; x++) {
+		
+		for(int y=0; y < height; y++) {
+			pos = y*width + x;
+			mvaddch(y, x, bob[pos]);
+		}
+	} 
+	
 	wrefresh(c_screen);
 	
 	getch();
-	getch();
-	
-	return 0;
-
+ 		
+ 		return 0;
 }
 
 
