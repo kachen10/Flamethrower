@@ -10,9 +10,12 @@ int c_visual () {
 	WINDOW * c_screen = newwin(height, width, start_y, start_x);
 	refresh();
 	
-	box(c_screen, 0, 0);
-	////mvprintw(c_screen, 1, 1, "this is my box");
-	//wrefresh(c_screen);
+	box(c_screen, 1, 1);
+	mvwprintw(c_screen, 1, 1, "this is my box");
+	wrefresh(c_screen);
+	
+	getch();
+	getch();
 	
 	return 0;
 
