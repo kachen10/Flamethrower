@@ -7,29 +7,20 @@ void bob_stage1(int height, int width, int size, WINDOW * win) {
 	int pos; //current position in the image
 	
 	char bob[size] = {};
-	for (int i=0; i++; i<size) {
-		bob[i] = 'h';
+	for (int i=0; i < size; i++) {
+		bob[i] = ' ';
+		//addch(bob[i]);
 	}
 	
-	for (int x=0; x++; x < width) {
-		for(int y=0; y++; y < height) {
+	for(int x=0; x < width; x++) {
+		
+		for(int y=0; y < height; y++) {
 			pos = y*width + x;
-			mvwprintw(win, 2, 2, "%c", bob[pos]);
-			//printw("%c", bob[position]);
+			mvaddch(y, x, bob[pos]);
 		}
-	}
+	} 
 	
 	wrefresh(win);
-	
-	/*for(int i=0; i++; i<size) {
-		printw("%c", &bob[i]);
-		mvwprintw(win, 2, 2, "%c", bob[i]);
-		wrefresh(win);
-	}
-	*/
-	//printw(bob);
-	
-	getch();
 }
 
 
@@ -69,9 +60,4 @@ int c_visual () {
 	return 0;
 
 }
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> master
