@@ -4,7 +4,7 @@ LDFLAGS = -lncurses
 all: visual menu
 
 visual:
-	$(CC) -o flamethrower main.cpp c_visual.cpp $(LDFLAGS)
+	$(CC) -o visual main.cpp c_visual.cpp creature.cpp $(LDFLAGS)
 
 menu:
-	$(CC) -o flamethrower main.cpp menu.cpp choices.cpp $(LDFLAGS)
+	$(CC) -o menuwin main.cpp menu.cpp $(LDFLAGS) 
