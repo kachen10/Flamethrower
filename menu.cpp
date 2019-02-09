@@ -1,6 +1,7 @@
 #include <ncurses.h>
-#include <string.h>
+#include <string>
 #include "menu.h"
+using namespace std;
 
 
 int menu() {
@@ -15,12 +16,14 @@ int menu() {
   refresh();
 
   // Create window for input
-  menu = new_window( height, width, y, x );
-
+  menu = new_window( height, x-12 , y-8, width);
   //
-  getch();
-  endwin();
+  int user_input;
+  while ( (user_input = getch()) != KEY_F(1) ) {
+    char choices[3] = { "feed", "play", "study" };
 
+  }
+  endwin();
   return 0;
 }
 
@@ -37,8 +40,6 @@ WINDOW * new_window( int height, int width, int starty, int startx ) {
 }
 
 void close_window( WINDOW * menu_win ) {
-
-
   wrefresh( menu_win );
   delwin( menu_win );
 
