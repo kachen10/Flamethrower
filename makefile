@@ -8,3 +8,6 @@ visual:
 
 menu:
 	$(CC) -o menuwin runMenu.cpp menu.cpp $(LDFLAGS)
+
+clean:
+	rm -f visual menuwin
