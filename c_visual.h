@@ -1,2 +1,2 @@
-int c_visual();
+int c_visual(int, int);
 
