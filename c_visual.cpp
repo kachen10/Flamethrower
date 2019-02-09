@@ -69,6 +69,9 @@ int c_visual () {
 	return 0;
 
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> master
