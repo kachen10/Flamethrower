@@ -3,9 +3,11 @@
 #include "menu.h"
 using namespace std;
 
+int N = 3;
 
 int menu() {
   WINDOW * menu;
+  string choices[3] = { "feed", "play", "study" };
 
   // Calculate placement of new window
   int y, x, height, width;
@@ -20,7 +22,25 @@ int menu() {
   //
   int user_input;
   while ( (user_input = getch()) != KEY_F(1) ) {
-    char choices[3] = { "feed", "play", "study" };
+      int hightlight = 1;
+      mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choices");
+      refresh();
+      switch( user_input ) {
+          case KEY_UP:
+            if ( hightlight == 1 ) { hightlight = N; };
+          case KEY_DOWN:
+            if ( hightlight == N ) { hightlight = 1; }
+            else { hightlight ++; };
+          default:
+            hightlight = 1;
+    }
+    for ( int i = 0; i < N; i++ ) {
+      if ( i == hightlight ) {
+        wattron( menu, A_REVERSE );
+        mvwprintw( menu, i+1, 1, choices[i].c_str() );
+        wattroff( menu, A_REVERSE );
+      }
+  }
 
   }
   endwin();
@@ -38,9 +58,21 @@ WINDOW * new_window( int height, int width, int starty, int startx ) {
   return menuwin;
 
 }
-
+/*
 void close_window( WINDOW * menu_win ) {
   wrefresh( menu_win );
   delwin( menu_win );
 
 }
+
+
+void print_selections(WINDOW * menu, int hightlight ) {
+    for ( int i = 0; i < N; i++ ) {
+      if ( i == hightlight ) {
+        wattron( menu, A_REVERSE );
+        mvwprintw( menu, i+1, 1, choices[i].c_str() );
+        wattroff( menu, A_REVERSE );
+      }
+  }
+}
+*/
