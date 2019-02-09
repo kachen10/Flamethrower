@@ -1,7 +1,9 @@
 CC=g++
 LDFLAGS = -lncurses
 
-all: visual menu bob
+all: main.cpp c_visual.cpp creature.cpp menu.cpp 
+	$(CC) -o main main.cpp c_visual.cpp creature.cpp menu.cpp $(LDFLAGS)
+	
 
 visual: main.cpp c_visual.cpp creature.cpp
 	$(CC) -o visual main.cpp c_visual.cpp creature.cpp $(LDFLAGS)
