@@ -6,6 +6,7 @@ using namespace std;
 
 int menu() {
   WINDOW * menu;
+  string choices[3] = { "feed", "play", "study" };
 
   // Calculate placement of new window
   int y, x, height, width;
@@ -20,7 +21,7 @@ int menu() {
   //
   int user_input;
   while ( (user_input = getch()) != KEY_F(1) ) {
-    char choices[3] = { "feed", "play", "study" };
+
 
   }
   endwin();
