@@ -19,10 +19,7 @@ int c_visual () {
 	WINDOW * c_screen = newwin(height, width, start_y, start_x);
 	refresh();
 	
-	//box(c_screen, (int)side_border, (int)top_border);
-	
-	//TO BE IN CONTROL OF HOW YOUR BOX BORDER LOOKS:
-	//wborder(win, left, right, top, bottom, tlc, trc, blc, brc);
+	//draw a box
 	wborder(c_screen, left, right, top, bottom, tlc, trc, blc, brc);
 	mvwprintw(c_screen, 1, 1, "this is my box");
 	wrefresh(c_screen);
@@ -33,5 +30,6 @@ int c_visual () {
 	return 0;
 
 }
+
 
 
