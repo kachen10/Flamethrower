@@ -3,7 +3,7 @@
 
 int height = 10;
 int width = 20;
-int size = height * width;
+int size;
 int start_y = 0; int start_x = 0;
 int max_x, max_y;
 
@@ -23,6 +23,7 @@ int c_visual() {
 	int eye2 = 5*width+10;
 	int mouth = 5*width + 9;
 	
+	size = height * width;
 	char bob[size] = {};
 	
 	
