@@ -14,16 +14,18 @@ private:
   int boredom;
   int hunger;
   int growth;
-  time_t time;
+  time_t dayStart;
   int lives;
   bool alive;
-}
+
+  void checkTime();
+};
 
 Creature::Creature(){
   boredom = 0;
   hunger = 100;
   growth = 0;
-  time(&time);
+  time(&dayStart);
   lives = 0;
   alive = true;
 }
@@ -33,18 +35,25 @@ void Creature::feed(){
   if (hunger > 100) {
     alive = false;
   }
+  checkTime();
 }
 
 void Creature::play(){
   boredom += 20;
+  checkTime();
 }
 
 void Creature::study(){
   knowledge += 20;
+  checkTime();
 }
 
 void Creature::checkTime(){
-  if (/* condition */) {
-    /* code */
+  time_t currentTime;
+  time(&currentTime);
+  double seconds;
+  seconds = difftime(dayStart, currentTime);
+  if (seconds >= 60) {
+    alive = false;
   }
 }
