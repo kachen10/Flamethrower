@@ -30,23 +30,24 @@ int menu() {
   //
 
   int user_input;
+  int highlight = 0;
   while ( 1 ) {
-    int highlight = 0;
     print_selections( menu, highlight );
-    user_input = getch();
+    user_input = wgetch(menu);
       //mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choice");
       // refresh();
       switch( user_input ) {
           case KEY_UP:
             if ( highlight == 0 ) { highlight = N-1; }
+            else { highlight--; }
           case KEY_DOWN:
             if ( highlight == N-1 ) { highlight = 0; }
-            else { highlight ++; }
+            else { highlight++; }
           case KEY_F(1):
             if ( user_input == KEY_F(1) ) { break; }
           default:
             break;
-    } print_selections( menu, highlight );
+    } //print_selections( menu, highlight );
   }
   endwin();
   return 0;
