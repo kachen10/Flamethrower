@@ -14,7 +14,8 @@ private:
   int knowledge;
   int boredom;
   int hunger;
-  int growth[3] = {1, 2, 3};
+  int growth[3];
+  int growthLength;
   int growthStatus;
   time_t dayStart;
   time_t last;      //time of last command
@@ -28,6 +29,10 @@ private:
 Creature::Creature(){
   boredom = 100;
   hunger = 100;
+  growthLength = 3;
+  for (int i = 0; i < growthLength; i++) {
+    growth[i] = i+1;
+  }
   growthStatus = growth[0];
   time(&dayStart);
   time(&last);
