@@ -3,14 +3,14 @@ LDFLAGS = -lncurses
 
 all: visual menu bob
 
-visual:
-	$(CC) -o visual main.cpp c_visual.cpp creature.cpp $(LDFLAGS)
+visual: main.cpp c_visual.cpp
+	$(CC) -o visual main.cpp c_visual.cpp $(LDFLAGS)
 
-menu:
+menu: menuwin runMenu.cpp menu.cpp
 	$(CC) -o menuwin runMenu.cpp menu.cpp $(LDFLAGS)
 
-bob:
-	$(CC) -o bob runMenu.cpp menu.cpp c_visual.cpp creature.cpp $(LDFLAGS)
+bob: runMenu.cpp menu.cpp c_visual.cpp
+	$(CC) -o bob runMenu.cpp menu.cpp c_visual.cpp $(LDFLAGS)
 
 clean:
-	rm -f visual menuwin
+	rm -f visual menuwin bob
