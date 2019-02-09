@@ -5,15 +5,17 @@ int height = 10;
 int width = 20;
 int size;
 int start_y = 0; int start_x = 0;
-int max_x, max_y;
+//int max_x, max_y;
 
 
 //**************FUNCTION TO DRAW BOB*******************//
-int c_visual() {
+int c_visual(int max_x, int max_y) {
 
 	noecho();
 	WINDOW * c_screen = newwin(height, width, start_y, start_x);
+
 	refresh();
+
 
 	wrefresh(c_screen);
 
