@@ -68,7 +68,6 @@ int c_visual() {
 	wrefresh(c_screen);
 	
 	getch();
-	getch();
  		
  		return 0;
 }
