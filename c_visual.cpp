@@ -4,7 +4,7 @@
 int height = 10;
 int width = 20;
 int size;
-int start_y = 2; int start_x = 6;
+int start_y = 1; int start_x = 6;
 //int max_x, max_y;
 
 
@@ -12,7 +12,7 @@ int start_y = 2; int start_x = 6;
 int c_visual(int max_x, int max_y) {
 
 	noecho();
-	WINDOW * c_screen = newwin(height, width, start_y, start_x);
+	WINDOW * c_screen = newwin(height, width, start_y, (max_x/3)+2);
 	
 	
 	refresh();
@@ -71,7 +71,7 @@ int c_visual(int max_x, int max_y) {
 	box(c_screen, 0, 0);
 	wrefresh(c_screen);
 
-	getch();
+	//getch();
 
  		return 0;
 }
