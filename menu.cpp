@@ -7,6 +7,7 @@ using namespace std;
 int N = 3;
 string choices[3] = { "feed", "play", "study" };
 
+int menu( int max_x, int max_y ) {
   WINDOW * menu;
 
   Creature* bob = new Creature();
