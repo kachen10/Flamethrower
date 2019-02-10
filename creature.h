@@ -19,8 +19,7 @@ private:
   int hunger;
   int growth[3] = {1, 2, 3};
   int growthStatus;
-  time_t dayStart;
-  time_t last;      //time of last command
+  int numActions;
   int lives;
   bool alive;
 
@@ -33,14 +32,14 @@ Creature::Creature(){
   boredom = 100;
   hunger = 100;
   growthStatus = growth[0];
-  time(&dayStart);
-  time(&last);
+  numActions = 0;
   lives = 0;
   alive = true;
 }
 
 void Creature::feed(WINDOW* menu){
   hunger += 20;
+  numActions++;
   mvwprintw( menu, 4, 1, "Bob was fed!" );
   wrefresh(menu);
   checkValues(menu);
@@ -49,6 +48,7 @@ void Creature::feed(WINDOW* menu){
 void Creature::play(WINDOW* menu){
   boredom += 20;
   hunger -= 5;
+  numActions++;
   mvwprintw( menu, 4, 1, "Bob had fun!" );
   wrefresh(menu);
   checkValues(menu);
@@ -58,6 +58,7 @@ void Creature::study(WINDOW* menu){
   knowledge += 20;
   boredom -= 10;
   hunger -= 5;
+  numActions++;
   mvwprintw( menu, 4, 1, "Bob studied hard..." );
   wrefresh(menu);
   checkValues(menu);
@@ -72,13 +73,7 @@ void Creature::murder(WINDOW* menu){
 }
 
 void Creature::checkValues(WINDOW* menu){
-  time_t currentTime;
-  time(&currentTime);
-  double sinceStartCycle = difftime(dayStart, currentTime);
-  double sinceLastCommand = difftime(last, currentTime);
-  int decrementBy = sinceLastCommand;
-
-  if (sinceStartCycle >= 240) {
+  if (numActions > 16) {
     alive = false;
     lives++;
     mvwprintw( menu, 4, 1, "Bob has lived a full life, and has died of old age..." );
@@ -88,24 +83,20 @@ void Creature::checkValues(WINDOW* menu){
     return;
   }
 
-  if (sinceStartCycle > 40 && sinceStartCycle < 80) {
+  if (numActions == 3) {
     growthStatus = growth[1];
     mvwprintw( menu, 4, 1, "Bob has grown up a little!" );
     wrefresh(menu);
   }
 
-  if (sinceStartCycle > 80 && sinceStartCycle < 120) {
+  if (numActions == 8) {
     growthStatus = growth[2];
     mvwprintw( menu, 4, 1, "Bob has grown up a little!" );
     wrefresh(menu);
   }
 
-  if (fmod(sinceLastCommand, 2) == 1) {
-    decrementBy++;
-  }
-
-  hunger -= (decrementBy/2);
-  boredom -= (decrementBy/2);
+  hunger -= 5;
+  boredom -= 5;
 
   if (hunger < 0) {
     alive = false;
@@ -130,8 +121,6 @@ void Creature::checkValues(WINDOW* menu){
     wrefresh(menu);
     return;
   }
-
-  last = currentTime;
 }
 
 void Creature::newLife(){
