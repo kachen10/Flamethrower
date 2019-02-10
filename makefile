@@ -13,5 +13,6 @@ menu: runMenu.cpp menu.cpp
 bob: runMenu.cpp menu.cpp c_visual.cpp
 	$(CC) -o bob runMenu.cpp menu.cpp c_visual.cpp $(LDFLAGS)
 
+
 clean:
 	rm -f visual menuwin bob
