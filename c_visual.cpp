@@ -54,9 +54,9 @@ int c_visual(int max_x, int max_y) {
 
 	}
 
-	bob[eye1] = '0';
-	bob[eye2] = '0';
-	bob[mouth] = '.';
+	bob[eye1] = 'O';
+	bob[eye2] = 'O';
+	bob[mouth] = 'w';
 
 
  	//PRINT BOB
