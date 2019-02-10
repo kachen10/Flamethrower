@@ -5,7 +5,7 @@
 -------
 
 ## THE BACKSTORY
-In the 90s, Tamagochi was a huge trend. Everybody was obsessed with it. Children would stay glued to their pets for hours in order to keep them alive.
+In the 90s, Tamagotchi was a huge trend. Everybody was obsessed with it. Children would stay glued to their pets for hours in order to keep them alive.
 So we thought, what if you didn't need to keep your pet alive? What if instead, you had to kill it as many times as possible?
 And that's how Bob was born.
 
