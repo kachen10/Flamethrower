@@ -7,22 +7,21 @@ using namespace std;
 int N = 3;
 string choices[3] = { "feed", "play", "study" };
 
-int menu() {
+int menu(int max_x, int max_y) {
   WINDOW * menu;
 
   Creature* bob = new Creature();
 
   // Calculate placement of new window
   int y, x, height, width;
-  getmaxyx( stdscr, y, x );
+  //getmaxyx( stdscr, y, x ); <-- max_x and max_y replace these values
   height = 6, width = 5;
 
   printw( "Press F1 to kill Bob." );
   refresh();
 
   // Create window for input
-  //menu = newwin( height, width, y-8, x-12);
-  menu = newwin( height, x-12, y-8, width );
+	menu = newwin(max_y/3, max_x, max_y-8, 0);
   box( menu, 0, 0 );
   refresh();
   wrefresh( menu );

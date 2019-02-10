@@ -14,7 +14,7 @@ int main( int argc, char* arg[] ) {
 	refresh();
 	getmaxyx(stdscr, max_y, max_x);
 	//FUNCTIONS THAT WILL GO HERE
-	menu();
+	menu(max_x, max_y);
 	c_visual(max_x, max_y);
 
 	endwin(); //bye
