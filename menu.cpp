@@ -10,6 +10,8 @@ string choices[3] = { "feed", "play", "study" };
 int menu( int max_x, int max_y ) {
   WINDOW * menu;
 
+  use_default_colors();
+
   Creature* bob = new Creature();
 
   // Calculate placement of new window
@@ -37,11 +39,8 @@ int menu( int max_x, int max_y ) {
     print_selections( menu, highlight );
     user_input = wgetch(menu);
       //mvprintw(0,0,"Use arrow keys to go up and down, enter to make a choice");
-      //wmove( menu, 4, 0 );
-      mvwprintw ( menu, 4, 1, "");
-
+      // refresh();
       switch( user_input ) {
-
           case KEY_UP:
             if ( highlight == 0 ) { highlight = N-1; break; }
             else { highlight--; break; }
@@ -51,9 +50,9 @@ int menu( int max_x, int max_y ) {
           case KEY_F(1):
             if ( user_input == KEY_F(1) ) { break; }
           case 10:
-            if ( highlight == 0 ) {  wclrtoeol( menu ); bob->feed(menu); break; }
-            if ( highlight == 1 ) { wclrtoeol( menu ); bob->play(menu);  break; }
-            if ( highlight == 2 ) { wclrtoeol( menu ); bob->study(menu);  break; }
+            if ( highlight == 0 ) { bob->feed(menu); break; }
+            if ( highlight == 1 ) { bob->play(menu); break; }
+            if ( highlight == 2 ) { bob->study(menu); break; }
           default:
             break;
     } //print_selections( menu, highlight );

@@ -13,8 +13,8 @@ int c_visual(int max_x, int max_y) {
 
 	noecho();
 	WINDOW * c_screen = newwin(height, width, start_y, (max_x/3)+2);
-	
-	
+
+
 	refresh();
 
 	wrefresh(c_screen);
@@ -60,11 +60,20 @@ int c_visual(int max_x, int max_y) {
 
 
  	//PRINT BOB
+	start_color();
+	init_pair(1, COLOR_BLUE, COLOR_BLACK);
 	for(int x=0; x < width; x++) {
 
 		for(int y=0; y < height; y++) {
 			pos = y*width + x;
+			if (pos > 65 && pos < 73 ||
+					pos > 84 && pos < 94 ||
+					pos > 104 && pos < 114 ||
+				  pos > 125 && pos < 133){
+			  wattron(c_screen, COLOR_PAIR(1));
+			}
 			mvwaddch(c_screen, y, x, bob[pos]);
+			wattroff(c_screen, COLOR_PAIR(1));
 		}
 	}
 
