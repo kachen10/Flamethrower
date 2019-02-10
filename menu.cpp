@@ -7,8 +7,7 @@ int N = 3;
 string choices[3] = { "feed", "play", "study" };
 
 int menu() {
-  start_color();
-  init_pair( 1 , 2, 0 );
+
   WINDOW * menu;
 
 
@@ -76,12 +75,18 @@ void close_window( WINDOW * menu_win ) {
 
 
 void print_selections(WINDOW * menu, int highlight ) {
+  start_color();
+  init_pair( 1 , 0, COLOR_CYAN );
+
     for ( int i = 0; i < N; i++ ) {
       if ( i == highlight ) {
-        wattron( menu, A_REVERSE );
+        //attron( COLOR_PAIR(1) );
+        wattron( menu, COLOR_PAIR(1) );
+        //wattron( menu, A_REVERSE );
+
       }
       mvwprintw( menu, i+1, 1, choices[i].c_str() );
-      wattroff( menu, A_REVERSE );
+      wattroff( menu, COLOR_PAIR(1) );
       wrefresh(menu);
   }
 }
