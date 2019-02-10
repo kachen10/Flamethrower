@@ -76,7 +76,7 @@ void close_window( WINDOW * menu_win ) {
 
 void print_selections(WINDOW * menu, int highlight ) {
   start_color();
-  init_pair( 1 , 0, COLOR_CYAN );
+  init_pair( 1 , 0, COLOR_BLUE );
 
     for ( int i = 0; i < N; i++ ) {
       if ( i == highlight ) {
