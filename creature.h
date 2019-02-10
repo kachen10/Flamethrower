@@ -1,5 +1,6 @@
 #include <time.h>
 #include <cmath>
+#include <ncurses.h>
 
 class Creature{
 public:
