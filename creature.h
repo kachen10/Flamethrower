@@ -70,6 +70,7 @@ void Creature::checkValues(WINDOW* menu){
     alive = false;
     lives++;
     mvwprintw( menu, 4, 1, "Bob has lived a full life, and has died of old age..." );
+	flash();
     wrefresh(menu);
     newLife();
     return;
@@ -97,6 +98,7 @@ void Creature::checkValues(WINDOW* menu){
   if (hunger < 0) {
     alive = false;
     mvwprintw( menu, 4, 1, "Bob has starved to death..." );
+    flash();
     wrefresh(menu);
     return;
   }
@@ -104,6 +106,7 @@ void Creature::checkValues(WINDOW* menu){
   if (hunger > 100){
     alive = false;
     mvwprintw( menu, 4, 1, "Bob ate too much and exploded..." );
+    flash();
     wrefresh(menu);
     return;
   }
@@ -111,6 +114,7 @@ void Creature::checkValues(WINDOW* menu){
   if (boredom < 0) {
     alive = false;
     mvwprintw( menu, 4, 1, "Bob was so bored he died..." );
+    flash();
     wrefresh(menu);
     return;
   }
