@@ -10,6 +10,8 @@ public:
   void feed(WINDOW* menu);
   void play(WINDOW* menu);
   void study(WINDOW* menu);
+  void murder(WINDOW* menu);
+
 
 private:
   int knowledge;
@@ -21,6 +23,7 @@ private:
   time_t last;      //time of last command
   int lives;
   bool alive;
+
 
   void checkValues(WINDOW* menu);
   void newLife();
@@ -60,6 +63,14 @@ void Creature::study(WINDOW* menu){
   checkValues(menu);
 }
 
+void Creature::murder(WINDOW* menu){
+  alive = false;
+  mvwprintw( menu, 4, 1, "Bob has been murdered..." );
+  flash();
+  wrefresh(menu);
+  return;
+}
+
 void Creature::checkValues(WINDOW* menu){
   time_t currentTime;
   time(&currentTime);
@@ -79,13 +90,13 @@ void Creature::checkValues(WINDOW* menu){
 
   if (sinceStartCycle > 40 && sinceStartCycle < 80) {
     growthStatus = growth[1];
-    mvwprintw( menu, 4, 1, "Bob has grown up a litte!" );
+    mvwprintw( menu, 4, 1, "Bob has grown up a little!" );
     wrefresh(menu);
   }
 
   if (sinceStartCycle > 80 && sinceStartCycle < 120) {
     growthStatus = growth[2];
-    mvwprintw( menu, 4, 1, "Bob has grown up a litte!" );
+    mvwprintw( menu, 4, 1, "Bob has grown up a little!" );
     wrefresh(menu);
   }
 

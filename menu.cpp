@@ -50,7 +50,7 @@ int menu( int max_x, int max_y ) {
             if ( highlight == N-1 ) { highlight = 0; break; }
             else { highlight++; break; }
           case KEY_F(1):
-            if ( user_input == KEY_F(1) ) { break; }
+            if ( user_input == KEY_F(1) ) { wclrtoeol( menu ); bob->murder(menu);}
           case 10:
             if ( highlight == 0 ) { wclrtoeol( menu ); bob->feed(menu); break; }
             if ( highlight == 1 ) { wclrtoeol( menu ); bob->play(menu); break; }
